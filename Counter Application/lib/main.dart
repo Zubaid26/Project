@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 200,
+              width: 201,
               height: 200,
               decoration: const BoxDecoration(
                 image: DecorationImage(
