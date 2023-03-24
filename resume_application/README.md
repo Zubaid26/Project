@@ -1,6 +1,9 @@
 # resume_application
 
 A new Flutter project.
+#output
+![Resume application page](https://user-images.githubusercontent.com/107495053/227211873-5d615d88-fc05-4faf-ad09-6be3d1cb92b6.png)
+
 
 ## Getting Started
 
