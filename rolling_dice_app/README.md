@@ -1,16 +1,11 @@
 # rolling_dice_app
 
 A new Flutter project.
+#Output
+![rolling_dice_1](https://user-images.githubusercontent.com/107495053/227433168-2a07efb2-a6cf-4838-baef-1485172c59d6.jpg)
+![rolling_dice_2](https://user-images.githubusercontent.com/107495053/227433185-edb290ed-7981-444a-8fa3-310968603d44.jpg)
+![rolling_dice_3](https://user-images.githubusercontent.com/107495053/227433200-62daef50-49f0-49b5-a914-a075e67bc19f.jpg)
+![rolling_dice_4](https://user-images.githubusercontent.com/107495053/227433213-c1ec1a75-ce32-47ed-9715-bb2c6b2855ee.jpg)
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
