@@ -1,139 +1,141 @@
-import 'dart:math';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
+void main() => runApp(const XylophoneApp());
+//Run file
 
+class XylophoneApp extends StatelessWidget {
+  const XylophoneApp({super.key});
 
-class DicePage4 extends StatefulWidget {
-  @override
-  _DicePage4State createState() => _DicePage4State();
-}
-
-class _DicePage4State extends State<DicePage4>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-  int _dice1 = 1;
-  int _dice2 = 1;
-  int _dice3 = 1;
-  int _dice4 = 1;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    _animation = CurvedAnimation(parent: _controller, curve: Curves.easeInOut);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _rollDice() {
-    setState(() {
-      _dice1 = Random().nextInt(6) + 1;
-      _dice2 = Random().nextInt(6) + 1;
-      _dice3 = Random().nextInt(6) + 1;
-      _dice4 = Random().nextInt(6) + 1;
-    });
-    _controller.reset();
-    _controller.forward();
+ void PlaySound(int SoundNumber){
+    final player = AudioCache();
+    player.play('note$SoundNumber.wav');
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Rolling Dice'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Xylophone App'),
+          backgroundColor: Colors.red,
         ),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: AnimatedBuilder(
-                    animation: _animation,
-                    builder: (context, child) {
-                      return Transform.rotate(
-                        angle: _animation.value * pi,
-                        child: Image.asset(
-                          'images/dice$_dice1.png',
-                          height: 150,
-                          width: 150,
-                        ),
-                      );
-                    },
+        backgroundColor: Colors.black,
+        body: SafeArea(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Expanded(
+                child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.blue;
+                    }),
                   ),
+                  onPressed: () {
+                    PlaySound(1);
+                  },
+                  child: const Text(''),
                 ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: AnimatedBuilder(
-                    animation: _animation,
-                    builder: (context, child) {
-                      return Transform.rotate(
-                        angle: _animation.value * pi,
-                        child: Image.asset(
-                          'images/dice$_dice2.png',
-                          height: 150,
-                          width: 150,
-                        ),
-                      );
-                    },
+              ),
+              Expanded(
+                child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.blue;
+                    }),
                   ),
+                  onPressed: () {
+                    PlaySound(2);
+                  },
+                  child: const Text(''),
                 ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: AnimatedBuilder(
-                    animation: _animation,
-                    builder: (context, child) {
-                      return Transform.rotate(
-                        angle: _animation.value * pi,
-                        child: Image.asset(
-                          'images/dice$_dice3.png',
-                          height: 150,
-                          width: 150,
-                        ),
-                      );
-                    },
+              ),
+              Expanded(
+                child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.blue;
+                    }),
                   ),
+                  onPressed: () {
+                    PlaySound(3);
+                  },
+                  child: const Text(''),
                 ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: AnimatedBuilder(
-                    animation: _animation,
-                    builder: (context, child) {
-                      return Transform.rotate(
-                        angle: _animation.value * pi,
-                        child: Image.asset(
-                          'images/dice$_dice4.png',
-                          height: 150,
-                          width: 150,
-                        ),
-                      );
-                    },
+              ),
+              Expanded(
+                child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.blue;
+                    }),
                   ),
+                  onPressed: () {
+                    PlaySound(4);
+                  },
+                  child: const Text(''),
                 ),
-              ],
-            ),
-            const SizedBox(height: 50),
-            ElevatedButton(
-              onPressed: _rollDice,
-              child: const Text('Roll the Dice!'),
-            ),
-          ],
+              ),
+              Expanded(
+                child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.blue;
+                    }),
+                  ),
+                  onPressed: () {
+                    PlaySound(5);
+                  },
+                  child: const Text(''),
+                ),
+              ),
+              Expanded(
+                child: TextButton(
+                  onPressed: () {
+                    PlaySound(6);
+                  },
+                  child: const Text(''),
+                ),
+              ),
+              Expanded(
+                child: TextButton(
+                  onPressed: () {
+                    PlaySound(7);
+                  },
+                  child: const Text(''),
+                ),
+              ),
+              Expanded(
+                child: TextButton(
+                  onPressed: () {
+                    PlaySound(7);
+                  },
+                  child: const Text(''),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

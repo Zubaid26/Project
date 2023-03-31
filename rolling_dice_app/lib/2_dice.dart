@@ -1,8 +1,14 @@
+// ignore: file_names
+// ignore: file_names
+// ignore: file_names
 import 'dart:math';
 import 'package:flutter/material.dart';
 
 class DicePage2 extends StatefulWidget {
+  const DicePage2({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _DicePage2State createState() => _DicePage2State();
 }
 

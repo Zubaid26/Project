@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:xylophone_app/xylophone.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,20 +15,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home:  XylophoneApp(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required String title});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("XyloPhone"),
-      ),
-    );
-  }
-}

@@ -4,25 +4,31 @@ import 'package:flutter/material.dart';
 import '2_dice.dart';
 import '3_dice.dart';
 import '4_dice.dart';
+import 'drawer.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Rolling Dice',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.blueGrey,
       ),
-      home: DicePage(),
+      home:  XylophoneApp(),
     );
   }
 }
 
 class DicePage extends StatefulWidget {
+  const DicePage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _DicePageState createState() => _DicePageState();
 }
 
@@ -69,6 +75,51 @@ class _DicePageState extends State<DicePage>
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Card(
+                  color: Colors.white,
+                  elevation: 4.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset(
+                        'images/drawerpic.jpg',
+                        height: 100.0,
+                        width: 100,
+                        fit: BoxFit.cover,
+                      ),
+                      const SizedBox(height: 10.0),
+                      const Text(
+                        'Card Title',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(height: 5.0),
+                      Text(
+                        'Card Description',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      const SizedBox(height: 10.0),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: const Text(
+                          'Button',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 10.0),
+                    ],
+                  ),
+                ),
                 AnimatedBuilder(
                   animation: _animation,
                   builder: (context, child) {
@@ -100,7 +151,7 @@ class _DicePageState extends State<DicePage>
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => DicePage2()));
+                                builder: (context) => const DicePage2()));
                       },
                       child: const Text("2 Dice"),
                     ),
@@ -112,7 +163,7 @@ class _DicePageState extends State<DicePage>
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => DicePage3()));
+                                builder: (context) => const DicePage3()));
                       },
                       child: const Text("3 Dice"),
                     ),
@@ -124,7 +175,7 @@ class _DicePageState extends State<DicePage>
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => DicePage4()));
+                                builder: (context) => const DicePage()));
                       },
                       child: const Text("4 Dice"),
                     ),
@@ -135,7 +186,10 @@ class _DicePageState extends State<DicePage>
           ],
         ),
       ),
-      drawer: const Drawer(),
+      drawer: const MyDrawer(
+        email: 'zubaidr26@gmail.com',
+        name: "Zubaid Rasool",
+      ),
     );
   }
 }
