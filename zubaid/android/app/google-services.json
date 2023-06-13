@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "70841893490",
+    "project_id": "zubaid-98ecd",
+    "storage_bucket": "zubaid-98ecd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:70841893490:android:fc04a30c5be7655cdc78eb",
+        "android_client_info": {
+          "package_name": "com.example.zubaid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "70841893490-o8h866pe3i1ctrnvdsbvvj7do3bqq928.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyhteKouUw-Aib24qLtkwN4Qqd414zK5g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "70841893490-o8h866pe3i1ctrnvdsbvvj7do3bqq928.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
