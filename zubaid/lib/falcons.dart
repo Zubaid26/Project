@@ -1,10 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
-import 'kits.dart';
+import 'perdictions.dart';
 
 class User {
   final int id;
@@ -33,10 +32,10 @@ class User {
 }
 
 class UserListPage extends StatefulWidget {
-  const UserListPage({super.key});
+  final User? user;
+  const UserListPage({Key? key, this.user}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _UserListPageState createState() => _UserListPageState();
 }
 
@@ -75,7 +74,7 @@ class _UserListPageState extends State<UserListPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => kits(user: user),
+        builder: (context) => KitsPage(user: user),
       ),
     );
   }

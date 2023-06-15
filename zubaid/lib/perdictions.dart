@@ -1,6 +1,7 @@
-import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:zubaid/falcons.dart';
 
 class MatchPrediction {
   final String team1;
@@ -16,77 +17,106 @@ class MatchPrediction {
   });
 }
 
-class MatchPredictionListPage extends StatelessWidget {
-  final ref = FirebaseDatabase.instance.ref().child('perdiction');
+class KitsPage extends StatefulWidget {
+  final User? user;
+
+  const KitsPage({Key? key, this.user}) : super(key: key);
+
+  @override
+  _KitsPageState createState() => _KitsPageState();
+}
+
+class _KitsPageState extends State<KitsPage> {
+  final ref = FirebaseDatabase.instance.reference().child('perdictions');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Match Predictions'),
+        title: const Text("Perdictions"),
       ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream:
-            FirebaseFirestore.instance.collection('predictions').snapshots(),
-        builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-          if (snapshot.hasError) {
-            return Text('Error: ${snapshot.error}');
-          }
+      body: Container(
+        color: Colors.grey[200],
+        child: FirebaseAnimatedList(
+          query: ref,
+          itemBuilder: (BuildContext context, DataSnapshot snapshot,
+              Animation<double> animation, int index) {
+            dynamic value = snapshot.value;
 
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const CircularProgressIndicator();
-          }
-
-          final List<MatchPrediction> predictions =
-              snapshot.data!.docs.map((doc) {
-            final value = doc.data() as Map<String, dynamic>;
-            return MatchPrediction(
-              team1: value['team1'],
-              team2: value['team2'],
-              prediction: value['prediction'],
-              percentage: value['percentage'].toDouble(),
-            );
-          }).toList();
-
-          return ListView.builder(
-            itemCount: predictions.length,
-            itemBuilder: (BuildContext context, int index) {
-              final prediction = predictions[index];
-              return Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1.0,
-                  ),
-                  borderRadius: BorderRadius.circular(8.0),
+            return Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color.fromARGB(255, 15, 36, 73),
+                  width: 1.0,
                 ),
-                margin: const EdgeInsets.all(10.0),
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${prediction.team1} vs ${prediction.team2}',
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              margin: const EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Center(
+                    child: Text(
+                      value?['perdiction']?.toString() ?? '',
                       style: const TextStyle(
                         fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 15, 36, 73),
                       ),
                     ),
-                    const SizedBox(height: 10.0),
-                    Text(
-                      'Prediction: ${prediction.prediction}',
-                      style: const TextStyle(fontSize: 16.0),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const SizedBox(height: 10.0),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            value?['team1']?.toString() ?? '',
+                            style: const TextStyle(
+                              fontSize: 20.0,
+                              color: Color.fromARGB(255, 15, 36, 73),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 120.0),
+                        Expanded(
+                          child: Text(
+                            value?['team2']?.toString() ?? '',
+                            style: const TextStyle(
+                              fontSize: 20.0,
+                              color: Color.fromARGB(255, 15, 36, 73),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(height: 5.0),
-                    Text(
-                      'Percentage: ${prediction.percentage.toStringAsFixed(2)}%',
-                      style: const TextStyle(fontSize: 16.0),
+                  ),
+                  const SizedBox(height: 20.0),
+                  Slider(
+                    value: value?['percentage']?.toDouble() ?? 0.0,
+                    min: 0.0,
+                    max: 100.0,
+                    onChanged: (double newValue) {
+                      // Handle slider value change
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text(
+                      'Percentage: ${(value?['percentage']?.toDouble() ?? 0.0).toStringAsFixed(2)}%',
+                      style: const TextStyle(fontSize: 20.0),
                     ),
-                  ],
-                ),
-              );
-            },
-          );
-        },
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
       ),
     );
   }
