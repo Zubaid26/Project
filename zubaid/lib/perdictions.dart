@@ -27,7 +27,7 @@ class KitsPage extends StatefulWidget {
 }
 
 class _KitsPageState extends State<KitsPage> {
-  final ref = FirebaseDatabase.instance.reference().child('perdictions');
+  final ref = FirebaseDatabase.instance.ref().child('perdictions');
 
   @override
   Widget build(BuildContext context) {
